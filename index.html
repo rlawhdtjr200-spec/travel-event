@@ -12,11 +12,13 @@
             background-color: #fff0f5;
             color: #333;
             margin: 0;
-            height: 100vh;
+            min-height: 100vh; /* 화면 크기에 꽉 차도록 변경 */
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            /* overflow: hidden; 삭제하여 모바일 스크롤 허용 */
+            padding: 20px 0; /* 모바일에서 위아래 여백 추가 */
+            box-sizing: border-box;
         }
 
         .screen {
@@ -25,12 +27,13 @@
             align-items: center;
             text-align: center;
             background: white;
-            padding: 40px;
+            padding: 30px 20px; /* 모바일 맞춤 패딩 축소 */
             border-radius: 30px;
             box-shadow: 0 15px 30px rgba(255,107,129,0.1);
             max-width: 500px;
             width: 90%;
             border: 5px solid #ffebf0;
+            box-sizing: border-box;
         }
 
         .screen.active {
@@ -39,16 +42,17 @@
 
         h1, h2 {
             color: #ff6b81;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(255, 107, 129, 0.2);
+            font-size: 24px; /* 모바일 폰트 크기 약간 조정 */
         }
 
         .btn {
             background-color: #ff6b81;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 20px;
+            padding: 12px 24px; /* 모바일 맞춤 버튼 크기 조정 */
+            font-size: 18px;
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.3s;
@@ -65,22 +69,23 @@
 
         .btn-group {
             display: flex;
-            gap: 25px;
+            gap: 15px;
             position: relative;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         #btn-no {
             background-color: #a4b0be;
             position: relative;
+            z-index: 10; /* 버튼이 다른 요소 위에 오도록 설정 */
         }
 
         .grid-menu {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .country-card {
@@ -92,7 +97,9 @@
             border: 3px solid #f1f2f6;
             box-shadow: 0 5px 10px rgba(0,0,0,0.05);
             text-align: center;
-            width: 140px;
+            width: calc(50% - 20px); /* 모바일에서 2열로 깔끔하게 배치 */
+            min-width: 120px;
+            box-sizing: border-box;
         }
 
         .country-card:hover {
@@ -102,8 +109,8 @@
         }
 
         .country-thumbnail {
-            width: 120px;
-            height: 120px;
+            width: 100%; /* 카드 너비에 꽉 차게 */
+            aspect-ratio: 1/1; /* 정사각형 비율 유지 */
             border-radius: 15px;
             object-fit: cover;
             margin-bottom: 10px;
@@ -111,14 +118,16 @@
 
         .city-card {
             background: #f1f2f6;
-            padding: 15px 25px;
+            padding: 12px 20px;
             border-radius: 15px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             transition: all 0.3s;
             border: 2px solid transparent;
-            width: 120px;
+            width: calc(50% - 20px); /* 모바일에서 2열 배치 */
+            min-width: 100px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .city-card:hover {
@@ -131,24 +140,25 @@
         .survey-group {
             text-align: left;
             width: 100%;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .survey-group p {
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #2f3542;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .radio-label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             cursor: pointer;
             padding: 10px;
             background: #f8f9fa;
             border-radius: 10px;
             transition: background 0.2s;
+            font-size: 15px; /* 모바일 글씨 크기 조정 */
         }
         
         .radio-label:hover {
@@ -171,8 +181,8 @@
 <body>
 
     <div id="screen1" class="screen active">
-        <h1>✈️ 민지에게 보내는 특별한 초대장</h1>
-        <p style="font-size: 20px;">김종석과 여행을 가시겠습니까?</p>
+        <h1>✈️ 특별한 초대장</h1>
+        <p style="font-size: 18px;">김종석과 여행을 가시겠습니까?</p>
         <div class="btn-group">
             <button class="btn" onclick="nextScreen(2)">예 💖</button>
             <button class="btn" id="btn-no">아니오</button>
@@ -207,6 +217,8 @@
             <p>2. 우리의 아침 기상 스케줄은?</p>
             <label class="radio-label"><input type="radio" name="q2" value="늦잠"> ☕ 늦잠 푹 자고 느긋하게 출발</label>
             <label class="radio-label"><input type="radio" name="q2" value="일찍"> 🏃‍♂️ 아침 일찍부터 알차게 돌아다니기</label>
+            <label class="radio-label"><input type="radio" name="q2" value="즉흥"> 🗺️ 발길 닿는 대로 즉흥적으로!</label>
+            <label class="radio-label"><input type="radio" name="q2" value="계획"> 📝 분 단위로 쪼개는 철저한 계획파</label>
         </div>
 
         <div class="survey-group">
@@ -222,36 +234,50 @@
     <script>
         const btnNo = document.getElementById('btn-no');
         
-        btnNo.addEventListener('mouseover', function() {
+        // 도망가는 로직을 함수로 분리 (마우스와 터치 모두 사용)
+        function moveButton(e) {
+            e.preventDefault(); // 모바일에서 터치 시 클릭되는 현상 방지
             this.style.position = 'fixed';
-            const maxX = window.innerWidth - this.offsetWidth - 20;
-            const maxY = window.innerHeight - this.offsetHeight - 20;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
+            
+            // 버튼이 화면 밖으로 나가지 않도록 여백 설정
+            const padding = 20;
+            const maxX = window.innerWidth - this.offsetWidth - padding;
+            const maxY = window.innerHeight - this.offsetHeight - padding;
+            
+            // 랜덤 좌표 생성 (최소 여백 보장)
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            
             this.style.left = randomX + 'px';
             this.style.top = randomY + 'px';
-        });
+        }
 
-        // ⚠️ 여기서 파일명을 깃허브에 올린 파일명과 똑같이 맞춰주세요!
+        // PC(마우스) 환경 이벤트
+        btnNo.addEventListener('mouseover', moveButton);
+        // 모바일(터치) 환경 이벤트 추가
+        btnNo.addEventListener('touchstart', moveButton);
+
+
+        // 이미지 파일명 설정 유지
         const travelData = {
             '🇯🇵 일본': {
-                img: '일본', // 일본 사진 파일명으로 변경
+                img: '일본', 
                 cities: ['도쿄', '오사카', '후쿠오카', '삿포로', '오키나와', '마쓰야마', '다카마쓰', '나고야']
             },
             '🇨🇳 중국': {
-                img: '중국', // 중국 사진 파일명으로 변경
+                img: '중국', 
                 cities: ['베이징', '상하이', '칭다오', '장자제']
             },
             '🇻🇳 베트남': {
-                img: '베트남', // 베트남 사진 파일명으로 변경
+                img: '베트남', 
                 cities: ['다낭', '나트랑', '하노이', '호치민', '푸꾸옥']
             },
             '🇹🇼 대만': {
-                img: '대만', // 대만 사진 파일명으로 변경
+                img: '대만', 
                 cities: ['타이베이', '가오슝', '타이중']
             },
             '🇭🇰 홍콩': {
-                img: '홍콩', // 홍콩 사진 파일명으로 변경
+                img: '홍콩', 
                 cities: ['홍콩섬', '구룡반도', '마카오(근교)']
             }
         };
@@ -260,6 +286,8 @@
         let chosenCity = '';
 
         function nextScreen(screenNumber) {
+            // 스크롤 맨 위로 올리기 (모바일 환경 배려)
+            window.scrollTo(0, 0);
             document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
             document.getElementById('screen' + screenNumber).classList.add('active');
 
@@ -337,7 +365,6 @@
             submitBtn.innerText = "전송 중... 💌";
             submitBtn.disabled = true;
 
-            // Formspree API (설정해주신 주소 적용 완료!)
             fetch("https://formspree.io/f/xvkpddgo", {
                 method: "POST",
                 headers: {
